@@ -1,1 +1,2 @@
-type HTMLProps<T> = JSX.IntrinsicElements[T];
+type HTMLProps<T extends keyof JSX.IntrinsicElements> =
+  JSX.IntrinsicElements[T];
