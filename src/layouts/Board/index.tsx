@@ -1,21 +1,21 @@
 import { Square } from "src/components";
 import styles from "./index.module.scss";
-import { calculateWinner } from "src/utils";
+import { useGameContext } from "src/hooks";
 
 const BOARD: [number, number] = [3, 3];
 
 interface BoardProps {
-  xIsNext: boolean;
-  squares: squares;
   onPlay: (squares: (string | null)[]) => void;
 }
 
-export const Board: React.FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
+export const Board: React.FC<BoardProps> = ({ onPlay }) => {
+  const { currentSquares, isGameWin, players } = useGameContext();
+
   const handleClick = (i: number) => {
-    if (calculateWinner(squares) || squares[i]) return;
-    const nextSquares = squares.slice();
-    if (xIsNext) nextSquares[i] = "X";
-    else nextSquares[i] = "O";
+    if (isGameWin || currentSquares[i]) return;
+    const nextSquares = currentSquares.slice();
+    const xIsNext = nextSquares.filter(Boolean).length % 2 === 0;
+    nextSquares[i] = xIsNext ? players[0].symbol : players[1].symbol;
     onPlay(nextSquares);
   };
 
@@ -28,7 +28,7 @@ export const Board: React.FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
             return (
               <Square
                 key={idx}
-                value={squares[idx]}
+                value={currentSquares[idx]}
                 onClick={() => handleClick(idx)}
               />
             );

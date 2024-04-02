@@ -1,4 +1,4 @@
-export const player: Player[] = [
+export const players: Player[] = [
   {
     id: "1",
     name: "Player 1",
