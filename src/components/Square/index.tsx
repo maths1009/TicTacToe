@@ -1,7 +1,7 @@
 import styles from "./index.module.scss";
 
-interface SquareProps extends HTMLProps<"button"> {
-  value: string;
+interface SquareProps extends Omit<HTMLProps<"button">, "value"> {
+  value: string | null;
 }
 
 export const Square: React.FC<SquareProps> = ({ value, onClick }) => {
