@@ -1,0 +1,12 @@
+$gap: 1rem;
+
+.board {
+  display: flex;
+  gap: $gap;
+  flex-direction: column;
+
+  .row {
+    display: flex;
+    gap: $gap;
+  }
+}
