@@ -1,3 +1,10 @@
+$size: 8rem;
+
 .square {
-  background-color: aqua;
+  background-color: $gray;
+  border-radius: 2rem;
+  color: $white;
+  font-size: 2rem;
+  height: $size;
+  width: $size;
 }
