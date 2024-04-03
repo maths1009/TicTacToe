@@ -1,5 +1,3 @@
-import { BOARD } from "src/layouts/Board";
-
 export const calculateWinner = (board: BoardState) => {
   const lines = [
     [0, 1, 2],
@@ -20,5 +18,5 @@ export const calculateWinner = (board: BoardState) => {
   return null;
 };
 
-export const isDraw = (currentMove: number) =>
-  currentMove === BOARD[0] * BOARD[1];
+export const isDraw = (currentMove: number, board: BoardType) =>
+  currentMove === board[0] * board[1];

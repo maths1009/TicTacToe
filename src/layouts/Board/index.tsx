@@ -2,7 +2,7 @@ import { Cell } from "src/components";
 import styles from "./index.module.scss";
 import { useGameContext } from "src/hooks";
 
-export const BOARD: [number, number] = [3, 3];
+export const BOARD: BoardType = [3, 3];
 
 export const Board: React.FC = () => {
   const {
