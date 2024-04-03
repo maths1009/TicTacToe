@@ -21,6 +21,12 @@ $ npm install
 $ npm run dev
 ```
 
+### Start
+
+```bash
+$ npm start
+```
+
 ### Build
 
 ```bash
@@ -37,6 +43,7 @@ $ npm run build:linux
 ## Current Features
 
 - The game currently supports turn-based gameplay.
+- The game also supports a custom grid with a minimum size of 3x3 and a customizable number of consecutive elements needed to win. These functionalities can be edited in the code, specifically in the constants file.
 
 ## Planned Enhancements
 
@@ -51,13 +58,13 @@ To play the game, follow these steps:
 
 1. Clone this repository to your local machine.
 2. Navigate to the root directory of the project in your terminal.
-3. Run the command `npm run preview` to start the development server.
-4. Open your web browser and go to the provided URL to play the game.
+3. Run the command `npm start` to start the app.
 
 ## Versions Used
 
 - Node: [20.9.0]
-- Electron [28.2.0]
 - electron-vite: [2.0.0]
+- Electron [28.2.0]
+- Vite [5.0.12]
 - React: [18.2.0]
 - TypeScript: [18.2.66]
