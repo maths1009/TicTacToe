@@ -6,21 +6,18 @@ export const BOARD: [number, number] = [3, 3];
 
 export const Board: React.FC = () => {
   const {
-    currentSequenceMoves,
+    currentSequence,
     isGameWin,
-    currentPlayer,
-    setCurrentPlayer,
     addHistory,
     setCurrentMove,
     currentMove,
   } = useGameContext();
 
   const handleClick = (i: number) => {
-    if (isGameWin || currentSequenceMoves[i]) return;
-    const nextSquares = currentSequenceMoves.slice();
-    nextSquares[i] = currentPlayer.symbol;
-    setCurrentPlayer(currentPlayer);
-    addHistory(nextSquares);
+    if (isGameWin || currentSequence.board[i]) return;
+    const nextSquares = currentSequence.board.slice();
+    nextSquares[i] = currentSequence.currentPlayer.symbol;
+    addHistory(nextSquares, currentSequence.currentPlayer);
     setCurrentMove(currentMove + 1);
   };
 
@@ -33,7 +30,7 @@ export const Board: React.FC = () => {
             return (
               <Cell
                 key={idx}
-                value={currentSequenceMoves[idx]}
+                value={currentSequence.board[idx]}
                 onClick={() => handleClick(idx)}
               />
             );

@@ -6,12 +6,13 @@ import { calculateWinner } from "./utils";
 
 const App: React.FC = () => {
   const [players, setPlayers] = useState<Player[]>(playersMocks);
-  const [currentPlayer, setCurrentPlayer] = useState<Player>(players[0]);
   const [currentMove, setCurrentMove] = useState<number>(0);
-  const [history, setHistory] = useState<BoardState[]>([Array(9).fill(null)]);
+  const [history, setHistory] = useState<historyMove[]>([
+    { board: Array(9).fill(null), currentPlayer: players[0] },
+  ]);
 
-  const currentSequenceMoves = history[currentMove];
-  const isGameWin = !!calculateWinner(currentSequenceMoves);
+  const currentSequence = history[currentMove];
+  const isGameWin = !!calculateWinner(currentSequence.board);
 
   return (
     <GameContext.Provider
@@ -19,18 +20,19 @@ const App: React.FC = () => {
         isGameWin,
         players,
         addPlayer: (player: Player) => setPlayers([...players, player]),
-        currentPlayer,
-        setCurrentPlayer: (player: Player) => {
+        history,
+        addHistory: (board: BoardState, player: Player) => {
           const currentPlayer = players.findIndex((p) => p.id === player.id);
           const nextPlayer = players[currentPlayer + 1] || players[0];
-          setCurrentPlayer(nextPlayer);
+          setHistory([
+            ...history.slice(0, currentMove + 1),
+            { board, currentPlayer: nextPlayer },
+          ]);
         },
-        history,
-        addHistory: (squares: BoardState) =>
-          setHistory([...history.slice(0, currentMove + 1), squares]),
         currentMove,
         setCurrentMove,
-        currentSequenceMoves,
+        currentSequence,
+        },
       }}
     >
       <Game />

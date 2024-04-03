@@ -4,17 +4,14 @@ interface GameContextType {
   players: Player[];
   addPlayer: (player: Player) => void;
 
-  currentPlayer: Player;
-  setCurrentPlayer: (player: Player) => void;
-
-  history: BoardState[];
-  addHistory: (squares: BoardState) => void;
+  history: historyMove[];
+  addHistory: (board: BoardState, player: Player) => void;
 
   currentMove: number;
   setCurrentMove: (move: number) => void;
 
   isGameWin: boolean;
-  currentSequenceMoves: BoardState;
+  currentSequence: historyMove;
 }
 
 export const GameContext = createContext<GameContextType>(

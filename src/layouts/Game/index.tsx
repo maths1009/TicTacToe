@@ -4,7 +4,7 @@ import { Button } from "src/components/Button";
 import { useGameContext } from "src/hooks";
 
 export const Game: React.FC = () => {
-  const { history, setCurrentMove, currentPlayer, isGameWin, currentMove } =
+  const { history, setCurrentMove, isGameWin, currentMove, currentSequence } =
     useGameContext();
 
   const moves = history.map((_, move) => {
@@ -30,7 +30,7 @@ export const Game: React.FC = () => {
                 ) : (
                   <>
                     {isGameWin ? "Gagnant " : "Current Player "}
-                    {currentPlayer.symbol}
+                    {currentSequence.currentPlayer.symbol}
                   </>
                 )}
               </p>
