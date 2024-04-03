@@ -29,8 +29,11 @@ export const Game: React.FC = () => {
                   "Nul"
                 ) : (
                   <>
-                    {isGameWin ? "Gagnant " : "Current Player "}
-                    {currentSequence.currentPlayer.symbol}
+                    {isGameWin
+                      ? `Gagnant ${
+                          history[history.length - 2].currentPlayer.symbol
+                        }`
+                      : `Current Player ${currentSequence.currentPlayer.symbol}`}
                   </>
                 )}
               </p>
