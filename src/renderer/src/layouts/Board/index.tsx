@@ -1,8 +1,7 @@
 import { Cell } from '@/components/Cell'
 import styles from './index.module.scss'
 import { useGameContext } from '@/hooks'
-
-export const BOARD: BoardType = [3, 4]
+import { BOARD } from '@/constante'
 
 export const Board: React.FC = () => {
   const { currentSequence, gameStatus, addHistory, setCurrentMove, currentMove } = useGameContext()

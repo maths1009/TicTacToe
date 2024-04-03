@@ -3,7 +3,7 @@ import { Game } from './layouts'
 import { GameContext } from './providers'
 import { players as playersMocks } from './mocks'
 import { calculateWinner, isDraw } from './utils'
-import { BOARD } from './layouts/Board'
+import { BOARD, CONSECUVITE } from './constante'
 
 const App: React.FC = () => {
   const [players, setPlayers] = useState<Player[]>(playersMocks)
@@ -15,7 +15,7 @@ const App: React.FC = () => {
   const currentSequence = history[currentMove]
   const gameStatus = isDraw(currentMove, BOARD)
     ? 'draw'
-    : calculateWinner(currentSequence.board, BOARD[0], BOARD[1], 4)
+    : calculateWinner(currentSequence.board, BOARD[0], BOARD[1], CONSECUVITE)
       ? 'end'
       : null
 
