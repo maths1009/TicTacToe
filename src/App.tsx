@@ -8,10 +8,10 @@ const App: React.FC = () => {
   const [players, setPlayers] = useState<Player[]>(playersMocks);
   const [currentPlayer, setCurrentPlayer] = useState<Player>(players[0]);
   const [currentMove, setCurrentMove] = useState<number>(0);
-  const [history, setHistory] = useState<squares[]>([Array(9).fill(null)]);
+  const [history, setHistory] = useState<BoardState[]>([Array(9).fill(null)]);
 
-  const currentSquares = history[currentMove];
-  const isGameWin = !!calculateWinner(currentSquares);
+  const currentSequenceMoves = history[currentMove];
+  const isGameWin = !!calculateWinner(currentSequenceMoves);
 
   return (
     <GameContext.Provider
@@ -26,11 +26,11 @@ const App: React.FC = () => {
           setCurrentPlayer(nextPlayer);
         },
         history,
-        addHistory: (squares: squares) =>
+        addHistory: (squares: BoardState) =>
           setHistory([...history.slice(0, currentMove + 1), squares]),
         currentMove,
         setCurrentMove,
-        currentSquares,
+        currentSequenceMoves,
       }}
     >
       <Game />

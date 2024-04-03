@@ -1,4 +1,4 @@
-import { Square } from "src/components";
+import { Cell } from "src/components";
 import styles from "./index.module.scss";
 import { useGameContext } from "src/hooks";
 
@@ -6,7 +6,7 @@ const BOARD: [number, number] = [3, 3];
 
 export const Board: React.FC = () => {
   const {
-    currentSquares,
+    currentSequenceMoves,
     isGameWin,
     currentPlayer,
     setCurrentPlayer,
@@ -16,8 +16,8 @@ export const Board: React.FC = () => {
   } = useGameContext();
 
   const handleClick = (i: number) => {
-    if (isGameWin || currentSquares[i]) return;
-    const nextSquares = currentSquares.slice();
+    if (isGameWin || currentSequenceMoves[i]) return;
+    const nextSquares = currentSequenceMoves.slice();
     nextSquares[i] = currentPlayer.symbol;
     setCurrentPlayer(currentPlayer);
     addHistory(nextSquares);
@@ -31,9 +31,9 @@ export const Board: React.FC = () => {
           {Array.from({ length: BOARD[1] }).map((_, col) => {
             const idx = row * BOARD[0] + col;
             return (
-              <Square
+              <Cell
                 key={idx}
-                value={currentSquares[idx]}
+                value={currentSequenceMoves[idx]}
                 onClick={() => handleClick(idx)}
               />
             );

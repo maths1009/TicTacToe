@@ -1,4 +1,4 @@
-export const calculateWinner = (squares: squares) => {
+export const calculateWinner = (squares: BoardState) => {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
