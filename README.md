@@ -24,6 +24,7 @@ To play the game, follow these steps:
 
 ## Versions Used
 
+- Node: [20.9.0]
 - Vite: [5.2.0]
 - React: [18.2.0]
 - TypeScript: [18.2.66]
