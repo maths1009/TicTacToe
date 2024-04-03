@@ -20,9 +20,14 @@ const App: React.FC = () => {
         players,
         addPlayer: (player: Player) => setPlayers([...players, player]),
         currentPlayer,
-        setCurrentPlayer,
+        setCurrentPlayer: (player: Player) => {
+          const currentPlayer = players.findIndex((p) => p.id === player.id);
+          const nextPlayer = players[currentPlayer + 1] || players[0];
+          setCurrentPlayer(nextPlayer);
+        },
         history,
-        addHistory: (squares: squares) => setHistory([...history, squares]),
+        addHistory: (squares: squares) =>
+          setHistory([...history.slice(0, currentMove + 1), squares]),
         currentMove,
         setCurrentMove,
         currentSquares,

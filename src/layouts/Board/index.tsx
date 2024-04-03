@@ -4,19 +4,24 @@ import { useGameContext } from "src/hooks";
 
 const BOARD: [number, number] = [3, 3];
 
-interface BoardProps {
-  onPlay: (squares: (string | null)[]) => void;
-}
-
-export const Board: React.FC<BoardProps> = ({ onPlay }) => {
-  const { currentSquares, isGameWin, players } = useGameContext();
+export const Board: React.FC = () => {
+  const {
+    currentSquares,
+    isGameWin,
+    currentPlayer,
+    setCurrentPlayer,
+    addHistory,
+    setCurrentMove,
+    currentMove,
+  } = useGameContext();
 
   const handleClick = (i: number) => {
     if (isGameWin || currentSquares[i]) return;
     const nextSquares = currentSquares.slice();
-    const xIsNext = nextSquares.filter(Boolean).length % 2 === 0;
-    nextSquares[i] = xIsNext ? players[0].symbol : players[1].symbol;
-    onPlay(nextSquares);
+    nextSquares[i] = currentPlayer.symbol;
+    setCurrentPlayer(currentPlayer);
+    addHistory(nextSquares);
+    setCurrentMove(currentMove + 1);
   };
 
   return (

@@ -4,12 +4,7 @@ import { Button } from "src/components/Button";
 import { useGameContext } from "src/hooks";
 
 export const Game: React.FC = () => {
-  const { history, addHistory, setCurrentMove } = useGameContext();
-
-  const handlePlay = (nextSquares: squares) => {
-    addHistory(nextSquares);
-    setCurrentMove(history.length);
-  };
+  const { history, setCurrentMove } = useGameContext();
 
   const moves = history.map((_, move) => {
     const description = move ? "Go to move #" + move : "Go to game start";
@@ -22,7 +17,7 @@ export const Game: React.FC = () => {
 
   return (
     <div className={styles.game}>
-      <Board onPlay={handlePlay} />
+      <Board />
       <div className={styles.moves}>
         <ol>{moves}</ol>
       </div>
