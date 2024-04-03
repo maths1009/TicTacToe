@@ -1,7 +1,7 @@
 import { Board } from "../Board";
 import styles from "./index.module.scss";
-import { Button } from "src/components/Button";
-import { useGameContext } from "src/hooks";
+import { Button } from "@/components/Button";
+import { useGameContext } from "@/hooks";
 
 export const Game: React.FC = () => {
   const {

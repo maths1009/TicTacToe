@@ -1,4 +1,15 @@
 {
+  "files": [],
+  "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
+  "references": [{ "path": "./tsconfig.node.json" }],
+
+  "include": [
+    "src/renderer/src/env.d.ts",
+    "src/renderer/src/types/*.d.ts",
+    "src/renderer/src/**/*",
+    "src/renderer/src/**/*.tsx",
+    "src/preload/*.d.ts"
+  ],
   "compilerOptions": {
     "target": "ES2020",
     "useDefineForClassFields": true,
@@ -19,14 +30,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-
-    /* Source Maps */
-    "baseUrl": ".",
     "esModuleInterop": true,
+    "composite": true,
+
+    "baseUrl": ".",
     "paths": {
-      "src/*": ["./src/*"]
+      "@/*": ["src/renderer/src/*"],
+      "nodeModules/*": ["node_modules/*"]
     }
-  },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  }
 }

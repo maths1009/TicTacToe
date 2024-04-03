@@ -1,6 +1,38 @@
 # Tic Tac Toe
 
-This project is a Tic Tac Toe game developed using Vite, React, TypeScript, SCSS modules, absolute imports, and clsx for combining multiple CSS classes.
+An Electron application with React and TypeScript
+This project is a Tic Tac Toe game developed using SCSS modules, absolute imports, and clsx for combining multiple CSS classes.
+
+## Recommended IDE Setup
+
+- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
+## Project Setup
+
+### Install
+
+```bash
+$ npm install
+```
+
+### Development
+
+```bash
+$ npm run dev
+```
+
+### Build
+
+```bash
+# For windows
+$ npm run build:win
+
+# For macOS
+$ npm run build:mac
+
+# For Linux
+$ npm run build:linux
+```
 
 ## Current Features
 
@@ -25,6 +57,7 @@ To play the game, follow these steps:
 ## Versions Used
 
 - Node: [20.9.0]
-- Vite: [5.2.0]
+- Electron [28.2.0]
+- electron-vite: [2.0.0]
 - React: [18.2.0]
 - TypeScript: [18.2.66]
