@@ -17,9 +17,11 @@ export const Game: React.FC = () => {
 
   return (
     <div className={styles.game}>
-      <Board />
-      <div className={styles.moves}>
-        <ol>{moves}</ol>
+      <div className={styles.game__board}>
+        <Board />
+        <div className={styles.game__board__moves}>
+          <ol>{moves}</ol>
+        </div>
       </div>
     </div>
   );

@@ -1,16 +1,21 @@
 .game {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100dvh;
-  gap: 2rem;
 
-  .moves {
-    ol {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+  &__board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    &__moves {
+      ol {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
     }
   }
 }

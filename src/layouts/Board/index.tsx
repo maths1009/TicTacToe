@@ -27,7 +27,7 @@ export const Board: React.FC = () => {
   return (
     <div className={styles.board}>
       {Array.from({ length: BOARD[0] }).map((_, row) => (
-        <div className={styles.row} key={row}>
+        <div className={styles.board__row} key={row}>
           {Array.from({ length: BOARD[1] }).map((_, col) => {
             const idx = row * BOARD[0] + col;
             return (
