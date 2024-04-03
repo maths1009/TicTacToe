@@ -1,14 +1,20 @@
-import { BOARD, Board } from "../Board";
+import { Board } from "../Board";
 import styles from "./index.module.scss";
 import { Button } from "src/components/Button";
 import { useGameContext } from "src/hooks";
 
 export const Game: React.FC = () => {
-  const { history, setCurrentMove, isGameWin, currentMove, currentSequence } =
-    useGameContext();
+  const {
+    history,
+    setCurrentMove,
+    gameStatus,
+    currentSequence,
+    resetGame,
+    players,
+  } = useGameContext();
 
   const moves = history.map((_, move) => {
-    const description = move ? "Go to move #" + move : "Go to game start";
+    const description = move ? `Go to move #${move}` : "Go to game start";
     return (
       <li key={move}>
         <Button onClick={() => setCurrentMove(move)}>{description}</Button>
@@ -22,21 +28,32 @@ export const Game: React.FC = () => {
         <div className={styles.game__container__board}>
           <Board />
           <div className={styles.game__container__board__info}>
+            <div>
+              {players.map((p) => (
+                <p>
+                  name : {p.name} | symbol : {p.symbol} | scrore : {p.score}
+                </p>
+              ))}
+            </div>
             <div className={styles.game__container__board__info__general}>
               <h3>Game Info</h3>
-              <p>
-                {currentMove === BOARD[0] * BOARD[1] ? (
-                  "Nul"
-                ) : (
-                  <>
-                    {isGameWin
-                      ? `Gagnant ${
-                          history[history.length - 2].currentPlayer.symbol
-                        }`
-                      : `Current Player ${currentSequence.currentPlayer.symbol}`}
-                  </>
-                )}
-              </p>
+              {gameStatus ? (
+                <div
+                  className={styles.game__container__board__info__general__end}
+                >
+                  <p>
+                    {gameStatus === "draw"
+                      ? "Draw"
+                      : `Winner ${
+                          history[history.length - 2].currentPlayer.name
+                        }`}
+                  </p>
+
+                  <Button onClick={() => resetGame()}>Restart</Button>
+                </div>
+              ) : (
+                <p>Current Player {currentSequence.currentPlayer.name}</p>
+              )}
             </div>
           </div>
         </div>

@@ -7,14 +7,14 @@ export const BOARD: [number, number] = [3, 3];
 export const Board: React.FC = () => {
   const {
     currentSequence,
-    isGameWin,
+    gameStatus,
     addHistory,
     setCurrentMove,
     currentMove,
   } = useGameContext();
 
   const handleClick = (i: number) => {
-    if (isGameWin || currentSequence.board[i]) return;
+    if (gameStatus || currentSequence.board[i]) return;
     const nextSquares = currentSequence.board.slice();
     nextSquares[i] = currentSequence.currentPlayer.symbol;
     addHistory(nextSquares, currentSequence.currentPlayer);

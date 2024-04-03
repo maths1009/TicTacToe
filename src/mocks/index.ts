@@ -1,12 +1,14 @@
 export const players: Player[] = [
   {
     id: "1",
-    name: "Player 1",
+    name: "Mathis",
     symbol: "X",
+    score: 0,
   },
   {
     id: "2",
-    name: "Player 2",
+    name: "Tom",
     symbol: "O",
+    score: 0,
   },
 ];

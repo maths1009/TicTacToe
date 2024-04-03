@@ -11,4 +11,5 @@ type Player = {
   id: string;
   name: string;
   symbol: string;
+  score: number;
 };

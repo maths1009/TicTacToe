@@ -1,4 +1,6 @@
-export const calculateWinner = (squares: BoardState) => {
+import { BOARD } from "src/layouts/Board";
+
+export const calculateWinner = (board: BoardState) => {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -11,9 +13,12 @@ export const calculateWinner = (squares: BoardState) => {
   ];
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+    if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+      return board[a];
     }
   }
   return null;
 };
+
+export const isDraw = (currentMove: number) =>
+  currentMove === BOARD[0] * BOARD[1];

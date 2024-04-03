@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Game } from "./layouts";
 import { GameContext } from "./providers";
 import { players as playersMocks } from "./mocks";
-import { calculateWinner } from "./utils";
+import { calculateWinner, isDraw } from "./utils";
 
 const App: React.FC = () => {
   const [players, setPlayers] = useState<Player[]>(playersMocks);
@@ -12,12 +12,16 @@ const App: React.FC = () => {
   ]);
 
   const currentSequence = history[currentMove];
-  const isGameWin = !!calculateWinner(currentSequence.board);
+  const gameStatus = !!calculateWinner(currentSequence.board)
+    ? "end"
+    : isDraw(currentMove)
+    ? "draw"
+    : null;
 
   return (
     <GameContext.Provider
       value={{
-        isGameWin,
+        gameStatus,
         players,
         addPlayer: (player: Player) => setPlayers([...players, player]),
         history,
@@ -32,6 +36,21 @@ const App: React.FC = () => {
         currentMove,
         setCurrentMove,
         currentSequence,
+        resetGame: () => {
+          const newPlayers =
+            gameStatus === "draw"
+              ? players
+              : players.map((p) => {
+                  if (p.id === history[history.length - 2].currentPlayer.id) {
+                    p.score += 1;
+                  }
+                  return p;
+                });
+          setPlayers(newPlayers);
+          setCurrentMove(0);
+          setHistory([
+            { board: Array(9).fill(null), currentPlayer: newPlayers[0] },
+          ]);
         },
       }}
     >

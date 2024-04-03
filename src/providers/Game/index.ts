@@ -10,8 +10,9 @@ interface GameContextType {
   currentMove: number;
   setCurrentMove: (move: number) => void;
 
-  isGameWin: boolean;
+  gameStatus: "end" | "draw" | null;
   currentSequence: historyMove;
+  resetGame: () => void;
 }
 
 export const GameContext = createContext<GameContextType>(
